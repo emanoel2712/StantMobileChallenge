@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StantMobileChallenge">
         <activity
-            android:name=".presenter.view.MainActivity"
+            android:name=".presenter.view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

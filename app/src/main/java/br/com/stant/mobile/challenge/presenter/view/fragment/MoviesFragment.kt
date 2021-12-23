@@ -1,4 +1,4 @@
-package br.com.stant.mobile.challenge.presenter.view
+package br.com.stant.mobile.challenge.presenter.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
