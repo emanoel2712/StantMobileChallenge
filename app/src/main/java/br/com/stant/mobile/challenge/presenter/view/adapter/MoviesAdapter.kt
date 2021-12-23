@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.stant.mobile.challenge.databinding.ItemMovieBinding
 import br.com.stant.mobile.challenge.domain.model.Movie
+import com.bumptech.glide.Glide
 
 class MoviesAdapter(private val movies: List<Movie>) :
     RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
@@ -18,7 +19,7 @@ class MoviesAdapter(private val movies: List<Movie>) :
         val movie = movies[position]
 
         with(holder) {
-            binding
+            Glide.with(holder.itemView).load("http://goo.gl/gEgYUd").into(binding.ivMovie)
         }
     }
 
@@ -28,5 +29,4 @@ class MoviesAdapter(private val movies: List<Movie>) :
 
     inner class MoviesViewHolder(val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root)
-
 }
