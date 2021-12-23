@@ -9,6 +9,6 @@ class MoviesRepository(private var apiResource: APIResource) {
 
     suspend fun getMovies(): Resource<List<Movie>> {
         var result = apiResource.getMovies(BuildConfig.apiToken)
-
+        return Resource.Success(null)
     }
 }
