@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
+import br.com.stant.mobile.challenge.domain.model.Movie
+import br.com.stant.mobile.challenge.presenter.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presenter.viewmodel.MoviesViewModel
 
 class MoviesFragment : Fragment() {
@@ -26,5 +28,19 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.setupObservers()
+    }
+
+    private fun setupObservers() {
+
+        viewModel.movieList.observe(viewLifecycleOwner) {
+            populateMovies(it)
+        }
+
+        viewModel.getMovies()
+    }
+
+    private fun populateMovies(moviesList: List<Movie>) {
+        binding.rvMovies.adapter = MoviesAdapter(moviesList)
     }
 }
