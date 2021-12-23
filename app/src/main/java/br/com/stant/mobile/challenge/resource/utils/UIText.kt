@@ -1,4 +1,4 @@
-package br.com.stant.mobile.challenge.presenter.resource.utils
+package br.com.stant.mobile.challenge.resource.utils
 
 import androidx.annotation.StringRes
 

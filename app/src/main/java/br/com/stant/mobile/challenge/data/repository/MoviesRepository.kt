@@ -4,11 +4,9 @@ import br.com.stant.mobile.challenge.BuildConfig
 import br.com.stant.mobile.challenge.R
 import br.com.stant.mobile.challenge.data.api.APIResource
 import br.com.stant.mobile.challenge.domain.model.Movie
-import br.com.stant.mobile.challenge.presenter.resource.utils.Resource
-import br.com.stant.mobile.challenge.presenter.resource.utils.UIText
-import com.google.gson.Gson
+import br.com.stant.mobile.challenge.resource.utils.Resource
+import br.com.stant.mobile.challenge.resource.utils.UIText
 import retrofit2.HttpException
-import retrofit2.http.HTTP
 import java.io.IOException
 import java.net.HttpURLConnection
 

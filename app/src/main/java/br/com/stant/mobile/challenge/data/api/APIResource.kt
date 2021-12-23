@@ -6,6 +6,6 @@ import retrofit2.http.Query
 
 interface APIResource {
 
-    @GET("/movie/popular")
+    @GET("/movie/now_playing")
     suspend fun getMovies(@Query("api_key") apiToken: String): BaseResponse<List<Movie>>
 }

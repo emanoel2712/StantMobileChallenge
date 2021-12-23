@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.stant.mobile.challenge.domain.model.Movie
 import br.com.stant.mobile.challenge.domain.usecases.GetMoviesUseCase
-import br.com.stant.mobile.challenge.presenter.resource.utils.Resource
+import br.com.stant.mobile.challenge.resource.utils.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
