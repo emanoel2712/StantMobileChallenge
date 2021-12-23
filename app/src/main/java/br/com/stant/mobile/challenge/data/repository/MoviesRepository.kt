@@ -22,7 +22,7 @@ class MoviesRepository(private var apiResource: APIResource) {
 
             result.response?.let {
                 Resource.Success(it)
-            } ?: Resource.Error(UIText.DynamicText("Ops a lista é nula"))
+            } ?: Resource.Error(UIText.DynamicText("Ops, a lista é nula"))
 
         } catch (e: IOException) {
             Resource.Error(UIText.StringResource(R.string.no_internet_connection))
