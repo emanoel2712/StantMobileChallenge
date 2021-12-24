@@ -24,7 +24,6 @@ class MoviesRepository(private var apiResource: APIResource) {
         return try {
 
             result?.let { movieResponse ->
-                println("movie response " + movieResponse.toString())
                 Resource.Success(movieResponse.toMovie())
             } ?: Resource.Error(UIText.StringResource(R.string.unknow_error))
 

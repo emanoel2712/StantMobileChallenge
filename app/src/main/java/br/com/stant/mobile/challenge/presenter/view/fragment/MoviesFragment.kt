@@ -43,4 +43,8 @@ class MoviesFragment : Fragment() {
     private fun populateMovies(moviesList: List<Result>) {
         binding.rvMovies.adapter = MoviesAdapter(moviesList)
     }
+
+    private fun setupRV() {
+
+    }
 }

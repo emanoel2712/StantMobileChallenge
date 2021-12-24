@@ -19,7 +19,7 @@ class MoviesAdapter(private val movies: List<Result>) :
         val movie = movies[position]
 
         with(holder) {
-            Glide.with(holder.itemView).load("http://goo.gl/gEgYUd").into(binding.ivMovie)
+            Glide.with(holder.itemView).load("http://image.tmdb.org/t/p/w500/" + movie.poster_path).into(binding.ivMovie)
         }
     }
 
