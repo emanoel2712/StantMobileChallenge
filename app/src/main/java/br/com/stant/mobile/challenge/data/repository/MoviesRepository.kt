@@ -29,7 +29,6 @@ class MoviesRepository(private var apiResource: APIResource) {
         } catch (e: IOException) {
             Resource.Error(UIText.StringResource(R.string.no_internet_connection))
         } catch (e: HttpException) {
-
             val errorResponse =
                 Gson().fromJson(e.response()?.errorBody()?.charStream(), ErrorResponse::class.java)
 
@@ -48,7 +47,7 @@ class MoviesRepository(private var apiResource: APIResource) {
                 }
 
                 else -> {
-                    Resource.Error(UIText.StringResource(R.string.unknow_error))
+                    Resource.Error(UIText.StringResource(R.string.oops_something_happened))
                 }
             }
         }
