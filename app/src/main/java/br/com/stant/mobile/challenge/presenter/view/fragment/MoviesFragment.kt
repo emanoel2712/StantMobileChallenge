@@ -1,11 +1,10 @@
 package br.com.stant.mobile.challenge.presenter.view.fragment
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.stant.mobile.challenge.R
@@ -46,33 +45,22 @@ class MoviesFragment : Fragment() {
 
     private fun setupUI() {
         requireActivity().hideToolbar()
+        setHasOptionsMenu(true)
+        (activity as AppCompatActivity).setSupportActionBar(binding.topAppBar)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     private fun setupObservers() {
 
-        viewModel.movieList.observe(viewLifecycleOwner) {
+        viewModel.movie.observe(viewLifecycleOwner) {
             this.setupMoviesRV(it.results ?: emptyList())
         }
 
-        viewModel.getMovies()
-    }
-
-    private fun setupListeners() {
-
-        binding.topAppBar.setOnMenuItemClickListener {
-
-            when (it.itemId) {
-
-                R.id.search -> {
-                    it.icon.setTint(ContextCompat.getColor(requireContext(), R.color.black))
-                    true
-                }
-
-                else -> {
-                    false
-                }
-            }
+        viewModel.moviesFilteredList.observe(viewLifecycleOwner) {
+            this.setupMoviesRV(it)
         }
+
+        viewModel.getMovies()
     }
 
     private fun setupMoviesRV(moviesList: List<Result>) {
@@ -93,10 +81,31 @@ class MoviesFragment : Fragment() {
         binding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val pageIn = viewModel.movieList.value?.page
+                val pageIn = viewModel.movie.value?.page
                 if (!recyclerView.canScrollVertically(1) && dy != 0) {
                     viewModel.getMovies(pageIn?.plus(1))
                 }
+            }
+        })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        requireActivity().menuInflater.inflate(R.menu.top_app_bar, menu);
+        val searchItem = menu.findItem(R.id.search)
+        val searchView: SearchView = searchItem.actionView as SearchView
+        searchView.queryHint = getString(R.string.search_favorite_movie)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.filterMovie(query ?: "")
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.filterMovie(newText ?: "")
+                return true
             }
         })
     }
