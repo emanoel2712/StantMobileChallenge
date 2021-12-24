@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import br.com.stant.mobile.challenge.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
 import br.com.stant.mobile.challenge.domain.model.Result
@@ -42,7 +44,7 @@ class MoviesFragment : Fragment() {
         this.setupUI()
     }
 
-    private fun setupUI(){
+    private fun setupUI() {
         requireActivity().hideToolbar()
     }
 
@@ -53,6 +55,24 @@ class MoviesFragment : Fragment() {
         }
 
         viewModel.getMovies()
+    }
+
+    private fun setupListeners() {
+
+        binding.topAppBar.setOnMenuItemClickListener {
+
+            when (it.itemId) {
+
+                R.id.search -> {
+                    it.icon.setTint(ContextCompat.getColor(requireContext(), R.color.black))
+                    true
+                }
+
+                else -> {
+                    false
+                }
+            }
+        }
     }
 
     private fun setupMoviesRV(moviesList: List<Result>) {
