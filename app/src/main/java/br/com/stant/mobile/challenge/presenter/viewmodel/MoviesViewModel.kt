@@ -13,12 +13,12 @@ import kotlinx.coroutines.launch
 class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
 
     //MARK: Vars and Properties
-    private var _movieList = MutableLiveData<List<Movie>>()
-    var movieList: LiveData<List<Movie>> = _movieList
+    private var _movieList = MutableLiveData<Movie>()
+    var movieList: LiveData<Movie> = _movieList
 
     fun getMovies() {
 
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
 
             when (val response = getMoviesUseCase()) {
 

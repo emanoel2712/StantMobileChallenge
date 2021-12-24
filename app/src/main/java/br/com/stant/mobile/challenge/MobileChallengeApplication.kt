@@ -11,7 +11,7 @@ class MobileChallengeApplication : Application() {
 
         startKoin {
             androidContext(this@MobileChallengeApplication)
-            modules(listOf(apiModule, moviesUseCaseModule, moviesViewModelModule))
+            modules(listOf(apiModule, moviesRepositoryModule, moviesUseCaseModule, moviesViewModelModule))
         }
     }
 }

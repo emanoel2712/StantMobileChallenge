@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
-import br.com.stant.mobile.challenge.domain.model.Movie
+import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.presenter.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presenter.viewmodel.MoviesViewModel
 
@@ -34,13 +34,13 @@ class MoviesFragment : Fragment() {
     private fun setupObservers() {
 
         viewModel.movieList.observe(viewLifecycleOwner) {
-            populateMovies(it)
+            populateMovies(it.results ?: emptyList())
         }
 
         viewModel.getMovies()
     }
 
-    private fun populateMovies(moviesList: List<Movie>) {
+    private fun populateMovies(moviesList: List<Result>) {
         binding.rvMovies.adapter = MoviesAdapter(moviesList)
     }
 }

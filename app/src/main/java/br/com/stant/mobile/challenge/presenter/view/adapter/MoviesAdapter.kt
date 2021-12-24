@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.stant.mobile.challenge.databinding.ItemMovieBinding
-import br.com.stant.mobile.challenge.domain.model.Movie
+import br.com.stant.mobile.challenge.domain.model.Result
 import com.bumptech.glide.Glide
 
-class MoviesAdapter(private val movies: List<Movie>) :
+class MoviesAdapter(private val movies: List<Result>) :
     RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
