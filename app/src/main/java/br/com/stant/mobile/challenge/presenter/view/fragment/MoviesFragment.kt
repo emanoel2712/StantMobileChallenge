@@ -20,6 +20,11 @@ class MoviesFragment : Fragment() {
 
     private val viewModel: MoviesViewModel by viewModel()
 
+    override fun onResume() {
+        super.onResume()
+        this.setupObservers()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,26 +33,16 @@ class MoviesFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        this.setupObservers()
-    }
-
     private fun setupObservers() {
 
         viewModel.movieList.observe(viewLifecycleOwner) {
-//            populateMovies(it.results ?: emptyList())
-            this.setupRV(it.results ?: emptyList())
+            this.setupMoviesRV(it.results ?: emptyList())
         }
 
         viewModel.getMovies()
     }
 
-    private fun populateMovies(moviesList: List<Result>) {
-        binding.rvMovies.adapter = MoviesAdapter(moviesList)
-    }
-
-    private fun setupRV(moviesList: List<Result>) {
+    private fun setupMoviesRV(moviesList: List<Result>) {
 
         val moviesAdapter = MoviesAdapter(moviesList)
         binding.rvMovies.adapter = moviesAdapter

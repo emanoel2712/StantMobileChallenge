@@ -9,7 +9,8 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivMovie"
         android:layout_width="match_parent"
-        android:layout_height="410dp"
+        android:scaleType="fitXY"
+        android:layout_height="400dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
