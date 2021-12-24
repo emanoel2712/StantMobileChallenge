@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import br.com.stant.mobile.challenge.databinding.FragmentMovieDetailBinding
 import br.com.stant.mobile.challenge.resource.utils.Values
 import br.com.stant.mobile.challenge.domain.model.Result
+import br.com.stant.mobile.challenge.resource.extension.showToolbar
 import com.bumptech.glide.Glide
 
 class MovieDetailFragment : Fragment() {
@@ -25,7 +26,12 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.setupUI()
         this.setupInfo()
+    }
+
+    private fun setupUI() {
+        requireActivity().showToolbar()
     }
 
     private fun setupInfo() {

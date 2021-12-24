@@ -13,6 +13,8 @@ import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.presenter.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presenter.viewmodel.MoviesViewModel
 import br.com.stant.mobile.challenge.resource.utils.Values
+import br.com.stant.mobile.challenge.resource.extension.hideToolbar
+
 
 class MoviesFragment : Fragment() {
 
@@ -37,6 +39,11 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.loadMoreMoviesOnRV()
+        this.setupUI()
+    }
+
+    private fun setupUI(){
+        requireActivity().hideToolbar()
     }
 
     private fun setupObservers() {
