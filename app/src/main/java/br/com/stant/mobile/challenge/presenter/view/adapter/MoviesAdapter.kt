@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.stant.mobile.challenge.databinding.ItemMovieBinding
-import br.com.stant.mobile.challenge.domain.model.Movie
+import br.com.stant.mobile.challenge.domain.model.Result
+import br.com.stant.mobile.challenge.resource.extension.asDate
+import com.bumptech.glide.Glide
 
-class MoviesAdapter(private val movies: List<Movie>) :
+class MoviesAdapter(private val movies: List<Result>) :
     RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
@@ -18,7 +20,9 @@ class MoviesAdapter(private val movies: List<Movie>) :
         val movie = movies[position]
 
         with(holder) {
-            binding
+            binding.tvTitle.text = movie.title
+            binding.tvReleaseDate.text = movie.release_date?.asDate()
+            Glide.with(holder.itemView).load("http://image.tmdb.org/t/p/w500/" + movie.poster_path).into(binding.ivMovie)
         }
     }
 
@@ -28,5 +32,4 @@ class MoviesAdapter(private val movies: List<Movie>) :
 
     inner class MoviesViewHolder(val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root)
-
 }

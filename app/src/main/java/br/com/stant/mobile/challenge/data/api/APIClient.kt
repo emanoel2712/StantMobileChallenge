@@ -21,7 +21,7 @@ class APIClient {
             }
 
     private val retroClient = Retrofit.Builder()
-        .baseUrl("https://api.themoviedb.org/3/")
+        .baseUrl("http://api.themoviedb.org/3/")
         .addConverterFactory(GsonConverterFactory.create())
         .client(httpClient.build())
         .build()
