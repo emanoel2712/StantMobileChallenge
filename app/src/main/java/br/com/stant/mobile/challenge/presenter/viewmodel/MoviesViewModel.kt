@@ -16,11 +16,11 @@ class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
     private var _movieList = MutableLiveData<Movie>()
     var movieList: LiveData<Movie> = _movieList
 
-    fun getMovies() {
+    fun getMovies(page: Int? = 1) {
 
         viewModelScope.launch {
 
-            when (val response = getMoviesUseCase()) {
+            when (val response = getMoviesUseCase(page)) {
 
                 is Resource.Success -> {
                     _movieList.value = response.data ?: return@launch

@@ -17,9 +17,9 @@ import java.net.HttpURLConnection
 
 class MoviesRepository(private var apiResource: APIResource) {
 
-    suspend fun getMovies(): Resource<Movie> {
+    suspend fun getMovies(page : Int? = 1): Resource<Movie> {
 
-        val result = apiResource.getMovies(BuildConfig.apiToken)
+        val result = apiResource.getMovies(BuildConfig.apiToken, page)
 
         return try {
 

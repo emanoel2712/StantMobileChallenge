@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
 import br.com.stant.mobile.challenge.domain.model.Result
@@ -33,6 +34,11 @@ class MoviesFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        this.loadMoreMoviesOnRV()
+    }
+
     private fun setupObservers() {
 
         viewModel.movieList.observe(viewLifecycleOwner) {
@@ -53,5 +59,18 @@ class MoviesFragment : Fragment() {
             this.findNavController()
                 .navigate(MoviesFragmentDirections.actionMoviesToMovieDetail().actionId, bundle)
         }
+    }
+
+    private fun loadMoreMoviesOnRV() {
+
+        binding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val pageIn = viewModel.movieList.value?.page
+                if (!recyclerView.canScrollVertically(1) && dy != 0) {
+                    viewModel.getMovies(pageIn?.plus(1))
+                }
+            }
+        })
     }
 }
