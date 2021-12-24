@@ -9,6 +9,18 @@
         android:id="@+id/MoviesFragment"
         android:name="br.com.stant.mobile.challenge.presenter.view.fragment.MoviesFragment"
         android:label="Movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies" >
+
+        <action
+            android:id="@+id/action_movies_to_movie_detail"
+            app:destination="@id/MovieDetailFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/MovieDetailFragment"
+        android:name="br.com.stant.mobile.challenge.presenter.view.fragment.MovieDetailFragment"
+        android:label="MovieDetail"
+        tools:layout="@layout/fragment_movie_detail" />
 
 </navigation>
