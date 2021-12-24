@@ -19,6 +19,8 @@ class MoviesAdapter(private val movies: List<Result>) :
         val movie = movies[position]
 
         with(holder) {
+            binding.tvTitle.text = movie.title
+            binding.tvReleaseDate.text = movie.release_date
             Glide.with(holder.itemView).load("http://image.tmdb.org/t/p/w500/" + movie.poster_path).into(binding.ivMovie)
         }
     }
