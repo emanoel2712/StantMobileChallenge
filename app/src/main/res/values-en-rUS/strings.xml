@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StantMobileChallenge</string>
+
+    <string name="no_internet_connection">Ooops! Check your internet connection.</string>
+    <string name="unknow_error">Ooops! Unknown error.</string>
+</resources>

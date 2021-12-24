@@ -26,7 +26,7 @@ class MoviesRepository(private var apiResource: APIResource) {
             result?.let { movieResponse ->
                 println("movie response " + movieResponse.toString())
                 Resource.Success(movieResponse.toMovie())
-            } ?: Resource.Error(UIText.DynamicText("objeto é nulo"))
+            } ?: Resource.Error(UIText.StringResource(R.string.unknow_error))
 
         } catch (e: IOException) {
             Resource.Error(UIText.StringResource(R.string.no_internet_connection))
@@ -40,17 +40,17 @@ class MoviesRepository(private var apiResource: APIResource) {
                 HttpURLConnection.HTTP_UNAUTHORIZED -> {
                     errorResponse.status_message?.let { status_message ->
                         Resource.Error(UIText.DynamicText(status_message))
-                    } ?: Resource.Error(UIText.DynamicText("unknow"))
+                    } ?: Resource.Error(UIText.StringResource(R.string.unknow_error))
                 }
 
                 HttpURLConnection.HTTP_NOT_FOUND -> {
                     errorResponse.status_message?.let { status_message ->
                         Resource.Error(UIText.DynamicText(status_message))
-                    } ?: Resource.Error(UIText.DynamicText("unknow"))
+                    } ?: Resource.Error(UIText.StringResource(R.string.unknow_error))
                 }
 
                 else -> {
-                    Resource.Error(UIText.DynamicText("não encontrado"))
+                    Resource.Error(UIText.StringResource(R.string.unknow_error))
                 }
             }
         }
