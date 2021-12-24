@@ -8,5 +8,5 @@ import retrofit2.http.Query
 interface APIResource {
 
     @GET("movie/now_playing")
-    suspend fun getMovies(@Query("api_key") apiToken: String): MoviesResponse?
+    suspend fun getMovies(@Query("api_key") apiToken: String, @Query("page") page: Int? = 1): MoviesResponse?
 }

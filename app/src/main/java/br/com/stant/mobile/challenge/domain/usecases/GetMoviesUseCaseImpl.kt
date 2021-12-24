@@ -6,7 +6,7 @@ import br.com.stant.mobile.challenge.resource.utils.Resource
 
 class GetMoviesUseCaseImpl(private val moviesRepository: MoviesRepository) : GetMoviesUseCase {
 
-    override suspend fun invoke(): Resource<Movie> {
-        return moviesRepository.getMovies()
+    override suspend fun invoke(page: Int?): Resource<Movie> {
+        return moviesRepository.getMovies(page)
     }
 }

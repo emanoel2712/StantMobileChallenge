@@ -5,5 +5,5 @@ import br.com.stant.mobile.challenge.resource.utils.Resource
 
 interface GetMoviesUseCase {
 
-    suspend operator fun invoke(): Resource<Movie>
+    suspend operator fun invoke(page : Int? = 1): Resource<Movie>
 }
