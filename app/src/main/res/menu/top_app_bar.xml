@@ -4,9 +4,8 @@
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="pesquisar"
-        android:contentDescription="pesquisa"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
         app:showAsAction="ifRoom" />
 
 </menu>

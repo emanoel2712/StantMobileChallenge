@@ -20,8 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:menu="@menu/top_app_bar"
-            app:navigationIcon="@drawable/ic_launcher_foreground"
-            app:title="asdsad" />
+            app:navigationIcon="@drawable/ic_launcher_foreground" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
