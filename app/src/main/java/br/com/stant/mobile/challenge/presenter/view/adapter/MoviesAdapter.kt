@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 class MoviesAdapter(private val movies: List<Result>) :
     RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
 
+    var clickInfo: (result: Result) -> Unit = {}
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val itemView = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MoviesViewHolder(itemView)
@@ -22,7 +24,12 @@ class MoviesAdapter(private val movies: List<Result>) :
         with(holder) {
             binding.tvTitle.text = movie.title
             binding.tvReleaseDate.text = movie.release_date?.asDate()
-            Glide.with(holder.itemView).load("http://image.tmdb.org/t/p/w500/" + movie.poster_path).into(binding.ivMovie)
+            Glide.with(holder.itemView).load("http://image.tmdb.org/t/p/w500/" + movie.poster_path)
+                .into(binding.ivMovie)
+        }
+
+        holder.itemView.setOnClickListener {
+            this.clickInfo(movie)
         }
     }
 

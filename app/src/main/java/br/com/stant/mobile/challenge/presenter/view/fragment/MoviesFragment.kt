@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.presenter.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presenter.viewmodel.MoviesViewModel
+import br.com.stant.mobile.challenge.resource.utils.Values
 
 class MoviesFragment : Fragment() {
 
@@ -34,7 +36,8 @@ class MoviesFragment : Fragment() {
     private fun setupObservers() {
 
         viewModel.movieList.observe(viewLifecycleOwner) {
-            populateMovies(it.results ?: emptyList())
+//            populateMovies(it.results ?: emptyList())
+            this.setupRV(it.results ?: emptyList())
         }
 
         viewModel.getMovies()
@@ -44,7 +47,16 @@ class MoviesFragment : Fragment() {
         binding.rvMovies.adapter = MoviesAdapter(moviesList)
     }
 
-    private fun setupRV() {
+    private fun setupRV(moviesList: List<Result>) {
 
+        val moviesAdapter = MoviesAdapter(moviesList)
+        binding.rvMovies.adapter = moviesAdapter
+
+        moviesAdapter.clickInfo = {
+            val bundle = Bundle()
+            bundle.putParcelable(Values.DETAIL_MOVIE, it)
+            this.findNavController()
+                .navigate(MoviesFragmentDirections.actionMoviesToMovieDetail().actionId, bundle)
+        }
     }
 }
