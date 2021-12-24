@@ -17,11 +17,10 @@ import java.net.HttpURLConnection
 
 class MoviesRepository(private var apiResource: APIResource) {
 
-    suspend fun getMovies(page : Int? = 1): Resource<Movie> {
-
-        val result = apiResource.getMovies(BuildConfig.apiToken, page)
+    suspend fun getMovies(page: Int? = 1): Resource<Movie> {
 
         return try {
+            val result = apiResource.getMovies(BuildConfig.apiToken, page)
 
             result?.let { movieResponse ->
                 Resource.Success(movieResponse.toMovie())
