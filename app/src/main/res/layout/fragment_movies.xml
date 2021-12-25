@@ -21,7 +21,7 @@
             android:backgroundTint="@color/black"
             android:layout_marginTop="20dp"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:menu="@menu/top_app_bar" />
+            app:menu="@menu/menu_app_bar" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView

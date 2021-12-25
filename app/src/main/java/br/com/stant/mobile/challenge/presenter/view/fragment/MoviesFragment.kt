@@ -2,8 +2,10 @@ package br.com.stant.mobile.challenge.presenter.view.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,7 @@ import br.com.stant.mobile.challenge.presenter.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presenter.viewmodel.MoviesViewModel
 import br.com.stant.mobile.challenge.resource.utils.Values
 import br.com.stant.mobile.challenge.resource.extension.hideToolbar
+import br.com.stant.mobile.challenge.resource.utils.TypeNav
 
 class MoviesFragment : Fragment() {
 
@@ -42,6 +45,7 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         this.loadMoreMoviesOnRV()
         this.setupUI()
+        this.setupListeners()
     }
 
     private fun setupUI() {
@@ -66,6 +70,41 @@ class MoviesFragment : Fragment() {
         }
 
         viewModel.getMovies()
+    }
+
+    private fun setupListeners() {
+
+        var isClick = false
+        var typeNav: Enum<TypeNav>
+
+        binding.topAppBar.setOnMenuItemClickListener { menu ->
+
+            when (menu.itemId) {
+
+                R.id.dynamicOp -> {
+                    isClick = !isClick
+
+                    typeNav = if (isClick) TypeNav.MOVIES_DOWNLOADED else TypeNav.HOME
+
+                    when (typeNav) {
+
+                        TypeNav.MOVIES_DOWNLOADED -> {
+                            menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
+                        }
+
+                        TypeNav.HOME -> {
+                            menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud)
+                        }
+                    }
+
+                    true
+                }
+
+                else -> {
+                    true
+                }
+            }
+        }
     }
 
     private fun setupMoviesRV(moviesList: List<Result>) {
@@ -100,7 +139,7 @@ class MoviesFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        requireActivity().menuInflater.inflate(R.menu.top_app_bar, menu);
+        requireActivity().menuInflater.inflate(R.menu.menu_app_bar, menu);
         val searchItem = menu.findItem(R.id.search)
         val searchView: SearchView = searchItem.actionView as SearchView
         searchView.queryHint = getString(R.string.search_favorite_movie)
