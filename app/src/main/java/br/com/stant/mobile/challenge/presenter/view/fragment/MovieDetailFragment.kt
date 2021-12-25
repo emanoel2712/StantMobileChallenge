@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.stant.mobile.challenge.databinding.FragmentMovieDetailBinding
 import br.com.stant.mobile.challenge.resource.utils.Values
 import br.com.stant.mobile.challenge.domain.model.Result
+import br.com.stant.mobile.challenge.resource.extension.asDateStr
 import br.com.stant.mobile.challenge.resource.extension.hideToolbar
 import br.com.stant.mobile.challenge.resource.extension.setupToolbarWithNavController
 import br.com.stant.mobile.challenge.resource.extension.showToolbar
@@ -47,6 +48,10 @@ class MovieDetailFragment : Fragment() {
 
             Glide.with(binding.ivMovie).load("http://image.tmdb.org/t/p/w500/" + movie?.poster_path)
                 .into(binding.ivMovie)
+
+            binding.tvTitle.text = movie?.title
+            binding.tvDate.text = movie?.release_date?.asDateStr()
+            binding.tvOverview.text = movie?.overview
         }
     }
 }
