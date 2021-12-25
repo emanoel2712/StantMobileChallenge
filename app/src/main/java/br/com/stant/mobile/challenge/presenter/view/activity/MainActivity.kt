@@ -8,7 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import br.com.stant.mobile.challenge.R
 import br.com.stant.mobile.challenge.databinding.ActivityMainBinding
-import br.com.stant.mobile.challenge.resource.utils.UIUtils
+import br.com.stant.mobile.challenge.resource.extension.setStatusBarTransparent
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.toolbarMain.setupWithNavController(navController, appBarConfiguration)
 
-        UIUtils.setStatusBarTransparent(this, binding.root)
+        this.setStatusBarTransparent(binding.root)
     }
 }

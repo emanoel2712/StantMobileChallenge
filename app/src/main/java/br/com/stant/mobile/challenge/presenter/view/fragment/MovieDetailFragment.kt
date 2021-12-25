@@ -5,15 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import br.com.stant.mobile.challenge.databinding.FragmentMovieDetailBinding
 import br.com.stant.mobile.challenge.resource.utils.Values
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.resource.extension.asDateStr
 import br.com.stant.mobile.challenge.resource.extension.hideToolbar
 import br.com.stant.mobile.challenge.resource.extension.setupToolbarWithNavController
-import br.com.stant.mobile.challenge.resource.extension.showToolbar
-import br.com.stant.mobile.challenge.resource.utils.UIUtils
 import com.bumptech.glide.Glide
 
 class MovieDetailFragment : Fragment() {
