@@ -36,7 +36,6 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/transparent"
                 android:elevation="0dp"
-                app:menu="@menu/top_app_bar"
                 android:layout_marginTop="15dp"
                 app:layout_scrollFlags="scroll|enterAlways|snap" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>

@@ -10,6 +10,7 @@ import br.com.stant.mobile.challenge.databinding.FragmentMovieDetailBinding
 import br.com.stant.mobile.challenge.resource.utils.Values
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.resource.extension.hideToolbar
+import br.com.stant.mobile.challenge.resource.extension.setupToolbarWithNavController
 import br.com.stant.mobile.challenge.resource.extension.showToolbar
 import br.com.stant.mobile.challenge.resource.utils.UIUtils
 import com.bumptech.glide.Glide
@@ -35,6 +36,7 @@ class MovieDetailFragment : Fragment() {
 
     private fun setupUI() {
         requireActivity().hideToolbar()
+        this.setupToolbarWithNavController(binding.topAppBar)
     }
 
     private fun setupInfo() {
