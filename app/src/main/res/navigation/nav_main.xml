@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/MoviesFragment"
         android:name="br.com.stant.mobile.challenge.presenter.view.fragment.MoviesFragment"
-        android:label="Movies"
+        android:label=""
         tools:layout="@layout/fragment_movies" >
 
         <action
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/MovieDetailFragment"
         android:name="br.com.stant.mobile.challenge.presenter.view.fragment.MovieDetailFragment"
-        android:label="MovieDetail"
+        android:label="@string/detail_movie"
         tools:layout="@layout/fragment_movie_detail" />
 
 </navigation>
