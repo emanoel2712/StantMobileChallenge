@@ -25,9 +25,11 @@
                 android:layout_height="400dp"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:foreground="@drawable/black_shadow_strong"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                tools:targetApi="m" />
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"

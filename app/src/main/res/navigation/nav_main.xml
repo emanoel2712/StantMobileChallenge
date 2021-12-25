@@ -20,7 +20,6 @@
     <fragment
         android:id="@+id/MovieDetailFragment"
         android:name="br.com.stant.mobile.challenge.presenter.view.fragment.MovieDetailFragment"
-        android:label="@string/detail_movie"
         tools:layout="@layout/fragment_movie_detail" />
 
 </navigation>
