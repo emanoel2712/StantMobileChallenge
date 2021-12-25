@@ -16,17 +16,49 @@ class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
     private var _movie = MutableLiveData<Movie>()
     var movie: LiveData<Movie> = _movie
 
+    private var _moviesList = MutableLiveData<List<Result>>()
+    var moviesList: LiveData<List<Result>> = _moviesList
+
     private var _moviesFilteredList = MutableLiveData<List<Result>>()
     var moviesFilteredList: LiveData<List<Result>> = _moviesFilteredList
 
-    fun getMovies(page: Int? = 1) {
+
+    private fun addMoviesInList(resultsResponse: List<Result>): MutableList<Result> {
+
+        val moviesMutableList = mutableListOf<Result>()
+
+        _moviesList.value?.forEach {
+            moviesMutableList.add(it)
+        }
+
+        resultsResponse.forEach {
+            moviesMutableList.add(it)
+        }
+
+        println("movies mutable list " + moviesMutableList)
+        println("size " + moviesMutableList.size)
+
+        return moviesMutableList
+    }
+
+    fun getMovies(page: Int? = 1, isMoreMovies: Boolean? = false) {
 
         viewModelScope.launch {
 
             when (val response = getMoviesUseCase(page)) {
 
                 is Resource.Success -> {
-                    _movie.value = response.data ?: return@launch
+
+                    response.data?.let {
+                        _movie.value = it
+                    }
+
+                    if (isMoreMovies == true) {
+                        _movie.value?.page = response.data?.page
+                        _moviesList.value = addMoviesInList(response.data?.results ?: emptyList())
+                    } else {
+                        _moviesList.value = response.data?.results ?: emptyList()
+                    }
                 }
 
                 is Resource.Error -> {
@@ -38,7 +70,7 @@ class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
 
     fun filterMovie(title: String) {
 
-        val moviesList = _movie.value?.results
+        val moviesList = _moviesList.value
 
         val moviesFilteredList = moviesList?.filter { result ->
             result.title?.contains(title, true) == true

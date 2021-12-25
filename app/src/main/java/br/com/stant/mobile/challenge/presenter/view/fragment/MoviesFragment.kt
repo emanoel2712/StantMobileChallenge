@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.stant.mobile.challenge.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -52,8 +53,8 @@ class MoviesFragment : Fragment() {
 
     private fun setupObservers() {
 
-        viewModel.movie.observe(viewLifecycleOwner) {
-            this.setupMoviesRV(it.results ?: emptyList())
+        viewModel.moviesList.observe(viewLifecycleOwner) {
+            this.setupMoviesRV(it)
         }
 
         viewModel.moviesFilteredList.observe(viewLifecycleOwner) {
@@ -82,8 +83,16 @@ class MoviesFragment : Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val pageIn = viewModel.movie.value?.page
+                val layoutManager = binding.rvMovies.layoutManager as LinearLayoutManager
+                println("position " + layoutManager.findLastVisibleItemPosition())
+                println("tamanho da lista " + viewModel.moviesList.value?.size)
+//
+//                if (viewModel.moviesList.value?.size?.minus(1) == layoutManager.findLastVisibleItemPosition()) {
+//                    viewModel.getMovies(pageIn?.plus(1))
+//                }
+
                 if (!recyclerView.canScrollVertically(1) && dy != 0) {
-                    viewModel.getMovies(pageIn?.plus(1))
+                    viewModel.getMovies(pageIn?.plus(1), true)
                 }
             }
         })
