@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
 
     //MARK: Vars and Properties
+
     private var _movie = MutableLiveData<Movie>()
     var movie: LiveData<Movie> = _movie
 
@@ -21,6 +22,8 @@ class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
 
     private var _moviesFilteredList = MutableLiveData<List<Result>>()
     var moviesFilteredList: LiveData<List<Result>> = _moviesFilteredList
+
+    var lastPosition: Int = 0
 
 
     private fun addMoviesInList(resultsResponse: List<Result>): MutableList<Result> {
@@ -34,9 +37,6 @@ class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
         resultsResponse.forEach {
             moviesMutableList.add(it)
         }
-
-        println("movies mutable list " + moviesMutableList)
-        println("size " + moviesMutableList.size)
 
         return moviesMutableList
     }

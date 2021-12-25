@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.stant.mobile.challenge.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,7 +15,6 @@ import br.com.stant.mobile.challenge.presenter.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presenter.viewmodel.MoviesViewModel
 import br.com.stant.mobile.challenge.resource.utils.Values
 import br.com.stant.mobile.challenge.resource.extension.hideToolbar
-
 
 class MoviesFragment : Fragment() {
 
@@ -55,6 +53,7 @@ class MoviesFragment : Fragment() {
 
         viewModel.moviesList.observe(viewLifecycleOwner) {
             this.setupMoviesRV(it)
+            this.binding.rvMovies.smoothScrollToPosition(viewModel.lastPosition)
         }
 
         viewModel.moviesFilteredList.observe(viewLifecycleOwner) {
@@ -79,17 +78,12 @@ class MoviesFragment : Fragment() {
 
     private fun loadMoreMoviesOnRV() {
 
+
         binding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val pageIn = viewModel.movie.value?.page
-                val layoutManager = binding.rvMovies.layoutManager as LinearLayoutManager
-                println("position " + layoutManager.findLastVisibleItemPosition())
-                println("tamanho da lista " + viewModel.moviesList.value?.size)
-//
-//                if (viewModel.moviesList.value?.size?.minus(1) == layoutManager.findLastVisibleItemPosition()) {
-//                    viewModel.getMovies(pageIn?.plus(1))
-//                }
+                viewModel.lastPosition = viewModel.moviesList.value?.size ?: 0
 
                 if (!recyclerView.canScrollVertically(1) && dy != 0) {
                     viewModel.getMovies(pageIn?.plus(1), true)
