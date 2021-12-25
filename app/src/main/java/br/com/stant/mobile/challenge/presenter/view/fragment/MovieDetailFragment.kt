@@ -29,17 +29,7 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.setupUI()
         this.setupInfo()
-    }
-
-    private fun setupUI() {
-//        requireActivity().hideToolbar()
-//        setHasOptionsMenu(true)
-//        (activity as AppCompatActivity).setSupportActionBar(binding.topAppBar)
-//        (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
-
-        UIUtils.setStatusBarTransparent(requireActivity(), binding.root)
     }
 
     private fun setupInfo() {
