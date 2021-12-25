@@ -29,7 +29,12 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.setupUI()
         this.setupInfo()
+    }
+
+    private fun setupUI() {
+        requireActivity().hideToolbar()
     }
 
     private fun setupInfo() {
