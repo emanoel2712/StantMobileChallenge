@@ -21,6 +21,8 @@ class MoviesFragment : Fragment() {
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!!
 
+    private var isScrollToTheEnd: Boolean = false
+
     private val viewModel: MoviesViewModel by viewModel()
 
     override fun onResume() {
@@ -53,7 +55,10 @@ class MoviesFragment : Fragment() {
 
         viewModel.moviesList.observe(viewLifecycleOwner) {
             this.setupMoviesRV(it)
-            this.binding.rvMovies.smoothScrollToPosition(viewModel.lastPosition)
+            if (isScrollToTheEnd) {
+                this.binding.rvMovies.smoothScrollToPosition(viewModel.lastPosition)
+                isScrollToTheEnd = false
+            }
         }
 
         viewModel.moviesFilteredList.observe(viewLifecycleOwner) {
@@ -78,7 +83,6 @@ class MoviesFragment : Fragment() {
 
     private fun loadMoreMoviesOnRV() {
 
-
         binding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -86,6 +90,7 @@ class MoviesFragment : Fragment() {
                 viewModel.lastPosition = viewModel.moviesList.value?.size ?: 0
 
                 if (!recyclerView.canScrollVertically(1) && dy != 0) {
+                    isScrollToTheEnd = true
                     viewModel.getMovies(pageIn?.plus(1), true)
                 }
             }

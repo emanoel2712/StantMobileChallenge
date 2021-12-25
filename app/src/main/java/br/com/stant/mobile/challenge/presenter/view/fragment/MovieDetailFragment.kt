@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import br.com.stant.mobile.challenge.databinding.FragmentMovieDetailBinding
 import br.com.stant.mobile.challenge.resource.utils.Values
 import br.com.stant.mobile.challenge.domain.model.Result
-import br.com.stant.mobile.challenge.resource.extension.showToolbar
+import br.com.stant.mobile.challenge.resource.extension.asDateStr
+import br.com.stant.mobile.challenge.resource.extension.hideToolbar
+import br.com.stant.mobile.challenge.resource.extension.setupToolbarWithNavController
 import com.bumptech.glide.Glide
 
 class MovieDetailFragment : Fragment() {
@@ -31,7 +33,8 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun setupUI() {
-        requireActivity().showToolbar()
+        requireActivity().hideToolbar()
+        this.setupToolbarWithNavController(binding.topAppBar)
     }
 
     private fun setupInfo() {
@@ -42,6 +45,10 @@ class MovieDetailFragment : Fragment() {
 
             Glide.with(binding.ivMovie).load("http://image.tmdb.org/t/p/w500/" + movie?.poster_path)
                 .into(binding.ivMovie)
+
+            binding.tvTitle.text = movie?.title
+            binding.tvDate.text = movie?.release_date?.asDateStr()
+            binding.tvOverview.text = movie?.overview
         }
     }
 }
