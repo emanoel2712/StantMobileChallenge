@@ -4,4 +4,7 @@
 
     <string name="no_internet_connection">Ooops! Check your internet connection.</string>
     <string name="unknow_error">Ooops! Unknown error.</string>
+    <string name="search">Search</string>
+    <string name="search_favorite_movie">Search for your favorite movie</string>
+    <string name="oops_something_happened">Oops! some error happened, try again</string>
 </resources>

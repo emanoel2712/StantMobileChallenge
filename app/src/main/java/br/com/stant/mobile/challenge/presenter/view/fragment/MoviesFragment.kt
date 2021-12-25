@@ -1,18 +1,20 @@
 package br.com.stant.mobile.challenge.presenter.view.fragment
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import br.com.stant.mobile.challenge.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.presenter.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presenter.viewmodel.MoviesViewModel
 import br.com.stant.mobile.challenge.resource.utils.Values
+import br.com.stant.mobile.challenge.resource.extension.hideToolbar
 
 class MoviesFragment : Fragment() {
 
@@ -37,12 +39,25 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.loadMoreMoviesOnRV()
+        this.setupUI()
+    }
+
+    private fun setupUI() {
+        requireActivity().hideToolbar()
+        setHasOptionsMenu(true)
+        (activity as AppCompatActivity).setSupportActionBar(binding.topAppBar)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     private fun setupObservers() {
 
-        viewModel.movieList.observe(viewLifecycleOwner) {
-            this.setupMoviesRV(it.results ?: emptyList())
+        viewModel.moviesList.observe(viewLifecycleOwner) {
+            this.setupMoviesRV(it)
+            this.binding.rvMovies.smoothScrollToPosition(viewModel.lastPosition)
+        }
+
+        viewModel.moviesFilteredList.observe(viewLifecycleOwner) {
+            this.setupMoviesRV(it)
         }
 
         viewModel.getMovies()
@@ -63,13 +78,37 @@ class MoviesFragment : Fragment() {
 
     private fun loadMoreMoviesOnRV() {
 
+
         binding.rvMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val pageIn = viewModel.movieList.value?.page
+                val pageIn = viewModel.movie.value?.page
+                viewModel.lastPosition = viewModel.moviesList.value?.size ?: 0
+
                 if (!recyclerView.canScrollVertically(1) && dy != 0) {
-                    viewModel.getMovies(pageIn?.plus(1))
+                    viewModel.getMovies(pageIn?.plus(1), true)
                 }
+            }
+        })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        requireActivity().menuInflater.inflate(R.menu.top_app_bar, menu);
+        val searchItem = menu.findItem(R.id.search)
+        val searchView: SearchView = searchItem.actionView as SearchView
+        searchView.queryHint = getString(R.string.search_favorite_movie)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.filterMovie(query ?: "")
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.filterMovie(newText ?: "")
+                return true
             }
         })
     }
