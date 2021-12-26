@@ -14,13 +14,13 @@ O que foi feito:
 
 Bom, nesse projeto foi utilizado o conceito de clean architeture e também o padrão de arquitetura MVVM.
 
-Algumas tecnologias utilizadas:
+Algumas tecnologias utilizadas e o motivo:
 
 - Bibliotecas do Android Jetpack (Room, LiveData, ViewModel, Navigation, Databinding)...
 - Injeção de dependência com Koin
-- Retrofit, para acessar a API e consumir os serviços
-- Gson, para converter os JSON's das respostas dos serviços em entidades
-- Coroutines para trabalhar com funções assincronas
-- Glide para carregar imagens através de urls http
-- Material Design para utilizar componentes de UI mais atualizados
-- ShimmerFrameLayout para adicionar um efeito de carregamento nas listagens do app
+- Retrofit, acessar a API e consumir os serviços
+- Gson, converter os JSON's das respostas dos serviços em entidades
+- Coroutines, trabalhar com funções assincronas
+- Glide, carregar imagens através de urls http
+- Material Design, utilizar componentes de UI mais atualizados
+- ShimmerFrameLayout, para adicionar um efeito de carregamento nas listagens do app
