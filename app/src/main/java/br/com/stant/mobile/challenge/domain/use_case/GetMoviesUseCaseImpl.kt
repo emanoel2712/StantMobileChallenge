@@ -1,6 +1,7 @@
-package br.com.stant.mobile.challenge.domain.usecases
+package br.com.stant.mobile.challenge.domain.use_case
 
 import br.com.stant.mobile.challenge.data.repository.MoviesRepository
+import br.com.stant.mobile.challenge.data.repository.MoviesRepositoryImpl
 import br.com.stant.mobile.challenge.domain.model.Movie
 import br.com.stant.mobile.challenge.resource.utils.Resource
 

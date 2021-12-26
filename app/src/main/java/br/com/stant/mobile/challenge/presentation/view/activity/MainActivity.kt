@@ -1,4 +1,4 @@
-package br.com.stant.mobile.challenge.presenter.view.activity
+package br.com.stant.mobile.challenge.presentation.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

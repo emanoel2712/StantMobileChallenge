@@ -9,4 +9,9 @@
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
+    <item
+        android:id="@+id/dynamicOp"
+        android:icon="@drawable/ic_cloud"
+        android:title="@string/search"
+        app:showAsAction="ifRoom|collapseActionView" />
 </menu>

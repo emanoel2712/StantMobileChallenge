@@ -1,4 +1,4 @@
-package br.com.stant.mobile.challenge.data.api
+package br.com.stant.mobile.challenge.data.data_source
 
 import br.com.stant.mobile.challenge.data.response.MoviesResponse
 import br.com.stant.mobile.challenge.domain.model.Movie
