@@ -1,10 +1,13 @@
 package br.com.stant.mobile.challenge.data.data_source
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import br.com.stant.mobile.challenge.data.model.Result
 import br.com.stant.mobile.challenge.resource.utils.Constants
 
+@Database(entities = [Result::class], version = 1, exportSchema = false)
 abstract class MoviesDatabase : RoomDatabase() {
 
     companion object {
