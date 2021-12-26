@@ -1,12 +1,12 @@
 package br.com.stant.mobile.challenge
 
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import br.com.stant.mobile.challenge.data.data_source.APIClient
 import br.com.stant.mobile.challenge.data.data_source.APIResource
 import br.com.stant.mobile.challenge.data.data_source.MoviesDatabase
 import br.com.stant.mobile.challenge.data.data_source.dao.ResultDao
 import br.com.stant.mobile.challenge.data.repository.MoviesRepository
+import br.com.stant.mobile.challenge.data.repository.MoviesRepositoryImpl
 import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCase
 import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCaseImpl
 import br.com.stant.mobile.challenge.presentation.viewmodel.MoviesViewModel
@@ -48,8 +48,8 @@ val resultDao = module {
 
 val moviesRepositoryModule = module {
 
-    single {
-        MoviesRepository(get(), get())
+    single<MoviesRepository> {
+        MoviesRepositoryImpl(get(), get())
     }
 }
 
