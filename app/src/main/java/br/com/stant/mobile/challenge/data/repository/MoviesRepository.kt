@@ -3,6 +3,7 @@ package br.com.stant.mobile.challenge.data.repository
 import br.com.stant.mobile.challenge.BuildConfig
 import br.com.stant.mobile.challenge.R
 import br.com.stant.mobile.challenge.data.data_source.APIResource
+import br.com.stant.mobile.challenge.data.data_source.dao.ResultDao
 import br.com.stant.mobile.challenge.data.response.ErrorResponse
 import br.com.stant.mobile.challenge.data.response.toMovie
 import br.com.stant.mobile.challenge.domain.model.Movie
@@ -13,7 +14,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.HttpURLConnection
 
-class MoviesRepository(private var apiResource: APIResource) {
+class MoviesRepository(private var apiResource: APIResource, private var resultDao: ResultDao) {
 
     suspend fun getMovies(page: Int? = 1): Resource<Movie> {
 
