@@ -17,7 +17,7 @@
         android:theme="@style/Theme.StantMobileChallenge"
         tools:targetApi="m">
         <activity
-            android:name=".presenter.view.activity.MainActivity"
+            android:name=".presentation.view.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

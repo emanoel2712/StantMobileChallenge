@@ -1,4 +1,4 @@
-package br.com.stant.mobile.challenge.presenter.view.fragment
+package br.com.stant.mobile.challenge.presentation.view.fragment
 
 import android.os.Bundle
 import android.view.*
@@ -12,8 +12,8 @@ import br.com.stant.mobile.challenge.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
 import br.com.stant.mobile.challenge.domain.model.Result
-import br.com.stant.mobile.challenge.presenter.view.adapter.MoviesAdapter
-import br.com.stant.mobile.challenge.presenter.viewmodel.MoviesViewModel
+import br.com.stant.mobile.challenge.presentation.view.adapter.MoviesAdapter
+import br.com.stant.mobile.challenge.presentation.viewmodel.MoviesViewModel
 import br.com.stant.mobile.challenge.resource.utils.Constants
 import br.com.stant.mobile.challenge.resource.extension.hideToolbar
 import br.com.stant.mobile.challenge.resource.utils.TypeNav

@@ -1,11 +1,11 @@
-package br.com.stant.mobile.challenge.presenter.viewmodel
+package br.com.stant.mobile.challenge.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.stant.mobile.challenge.domain.model.Movie
-import br.com.stant.mobile.challenge.domain.usecases.GetMoviesUseCase
+import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCase
 import br.com.stant.mobile.challenge.resource.utils.Resource
 import br.com.stant.mobile.challenge.domain.model.Result
 import kotlinx.coroutines.launch

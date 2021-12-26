@@ -1,11 +1,10 @@
-package br.com.stant.mobile.challenge.presenter.view.activity
+package br.com.stant.mobile.challenge.presentation.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import br.com.stant.mobile.challenge.R
 import br.com.stant.mobile.challenge.databinding.ActivityMainBinding
 import br.com.stant.mobile.challenge.resource.extension.setStatusBarTransparent

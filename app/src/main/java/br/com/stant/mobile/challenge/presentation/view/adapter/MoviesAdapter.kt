@@ -1,4 +1,4 @@
-package br.com.stant.mobile.challenge.presenter.view.adapter
+package br.com.stant.mobile.challenge.presentation.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

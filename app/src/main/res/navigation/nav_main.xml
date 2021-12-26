@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MoviesFragment"
-        android:name="br.com.stant.mobile.challenge.presenter.view.fragment.MoviesFragment"
+        android:name="br.com.stant.mobile.challenge.presentation.view.fragment.MoviesFragment"
         android:label=""
         tools:layout="@layout/fragment_movies" >
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/MovieDetailFragment"
-        android:name="br.com.stant.mobile.challenge.presenter.view.fragment.MovieDetailFragment"
+        android:name="br.com.stant.mobile.challenge.presentation.view.fragment.MovieDetailFragment"
         tools:layout="@layout/fragment_movie_detail" />
 
 </navigation>
