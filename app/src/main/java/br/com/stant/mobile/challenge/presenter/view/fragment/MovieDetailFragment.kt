@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.stant.mobile.challenge.databinding.FragmentMovieDetailBinding
-import br.com.stant.mobile.challenge.resource.utils.Values
+import br.com.stant.mobile.challenge.resource.utils.Constants
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.resource.extension.asDateStr
 import br.com.stant.mobile.challenge.resource.extension.hideToolbar
@@ -41,7 +41,7 @@ class MovieDetailFragment : Fragment() {
 
         this.arguments?.let {
 
-            val movie = it.getParcelable<Result>(Values.DETAIL_MOVIE)
+            val movie = it.getParcelable<Result>(Constants.DETAIL_MOVIE)
 
             Glide.with(binding.ivMovie).load("http://image.tmdb.org/t/p/w500/" + movie?.poster_path)
                 .into(binding.ivMovie)

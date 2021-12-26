@@ -1,6 +1,6 @@
 package br.com.stant.mobile.challenge.resource.utils
 
-object Values {
+object Constants {
 
     const val DETAIL_MOVIE: String = "DETAIL_MOVIE"
 

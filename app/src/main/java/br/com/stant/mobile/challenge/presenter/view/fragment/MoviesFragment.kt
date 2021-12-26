@@ -2,7 +2,6 @@ package br.com.stant.mobile.challenge.presenter.view.fragment
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -15,7 +14,7 @@ import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.presenter.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presenter.viewmodel.MoviesViewModel
-import br.com.stant.mobile.challenge.resource.utils.Values
+import br.com.stant.mobile.challenge.resource.utils.Constants
 import br.com.stant.mobile.challenge.resource.extension.hideToolbar
 import br.com.stant.mobile.challenge.resource.utils.TypeNav
 
@@ -114,7 +113,7 @@ class MoviesFragment : Fragment() {
 
         moviesAdapter.clickInfo = {
             val bundle = Bundle()
-            bundle.putParcelable(Values.DETAIL_MOVIE, it)
+            bundle.putParcelable(Constants.DETAIL_MOVIE, it)
             this.findNavController()
                 .navigate(MoviesFragmentDirections.actionMoviesToMovieDetail().actionId, bundle)
         }
