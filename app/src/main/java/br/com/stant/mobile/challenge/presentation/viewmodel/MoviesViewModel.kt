@@ -46,12 +46,12 @@ class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
 
         viewModelScope.launch {
 
-            _uiState.value = UIState(true)
+            _uiState.value = UIState.Loading(true)
 
             when (val response = getMoviesUseCase(page)) {
 
                 is Resource.Success -> {
-                    _uiState.value = UIState(false)
+                    _uiState.value = UIState.Loading(false)
 
                     response.data?.let {
                         _movie.value = it
@@ -66,8 +66,9 @@ class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
                 }
 
                 is Resource.Error -> {
-                    _uiState.value = UIState(false)
-
+                    response.uiText?.let { uiText ->
+                        _uiState.value = UIState.Error(uiText)
+                    }
                 }
             }
         }

@@ -15,11 +15,10 @@ import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.presentation.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presentation.viewmodel.MoviesViewModel
-import br.com.stant.mobile.challenge.resource.extension.gone
+import br.com.stant.mobile.challenge.resource.extension.*
 import br.com.stant.mobile.challenge.resource.utils.Constants
-import br.com.stant.mobile.challenge.resource.extension.hideToolbar
-import br.com.stant.mobile.challenge.resource.extension.visible
 import br.com.stant.mobile.challenge.resource.utils.TypeNav
+import br.com.stant.mobile.challenge.resource.utils.UIState
 import com.facebook.shimmer.ShimmerFrameLayout
 
 class MoviesFragment : Fragment() {
@@ -61,14 +60,16 @@ class MoviesFragment : Fragment() {
     private fun setupObservers() {
 
         viewModel.uiState.observe(viewLifecycleOwner) {
-            if (it.isLoading) {
-                binding.loading.startShimmer()
-                binding.rvMovies.gone()
-                binding.loading.visible()
-            } else {
-                binding.loading.stopShimmer()
-                binding.rvMovies.visible()
-                binding.loading.gone()
+
+            when (it) {
+
+                is UIState.Error -> {
+                    this.showSnackBar(it.uiText.asString(requireContext()))
+                }
+
+                is UIState.Loading -> {
+                    if (it.isLoading) adjustUI(true) else adjustUI(false)
+                }
             }
         }
 
@@ -151,6 +152,19 @@ class MoviesFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun adjustUI(isLoading: Boolean) {
+
+        if (isLoading) {
+            binding.loading.startShimmer()
+            binding.rvMovies.gone()
+            binding.loading.visible()
+        } else {
+            binding.loading.stopShimmer()
+            binding.rvMovies.visible()
+            binding.loading.gone()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
