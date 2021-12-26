@@ -8,23 +8,24 @@ import br.com.stant.mobile.challenge.domain.model.Movie
 import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCase
 import br.com.stant.mobile.challenge.resource.utils.Resource
 import br.com.stant.mobile.challenge.domain.model.Result
+import br.com.stant.mobile.challenge.resource.utils.UIState
 import kotlinx.coroutines.launch
 
 class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
 
-    //MARK: Vars and Properties
+    private val _uiState = MutableLiveData<UIState>()
+    var uiState: LiveData<UIState> = _uiState
 
-    private var _movie = MutableLiveData<Movie>()
+    private val _movie = MutableLiveData<Movie>()
     var movie: LiveData<Movie> = _movie
 
-    private var _moviesList = MutableLiveData<List<Result>>()
+    private val _moviesList = MutableLiveData<List<Result>>()
     var moviesList: LiveData<List<Result>> = _moviesList
 
-    private var _moviesFilteredList = MutableLiveData<List<Result>>()
+    private val _moviesFilteredList = MutableLiveData<List<Result>>()
     var moviesFilteredList: LiveData<List<Result>> = _moviesFilteredList
 
     var lastPosition: Int = 0
-
 
     private fun addMoviesInList(resultsResponse: List<Result>): MutableList<Result> {
 
@@ -45,9 +46,12 @@ class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
 
         viewModelScope.launch {
 
+            _uiState.value = UIState(true)
+
             when (val response = getMoviesUseCase(page)) {
 
                 is Resource.Success -> {
+                    _uiState.value = UIState(false)
 
                     response.data?.let {
                         _movie.value = it
@@ -62,6 +66,7 @@ class MoviesViewModel(var getMoviesUseCase: GetMoviesUseCase) : ViewModel() {
                 }
 
                 is Resource.Error -> {
+                    _uiState.value = UIState(false)
 
                 }
             }

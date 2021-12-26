@@ -18,16 +18,55 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:backgroundTint="@color/black"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/black"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:menu="@menu/menu_app_bar" />
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_placeholder" />
+                <include layout="@layout/shimmer_placeholder" />
+                <include layout="@layout/shimmer_placeholder" />
+                <include layout="@layout/shimmer_placeholder" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_placeholder" />
+                <include layout="@layout/shimmer_placeholder" />
+                <include layout="@layout/shimmer_placeholder" />
+                <include layout="@layout/shimmer_placeholder" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:spanCount="2"

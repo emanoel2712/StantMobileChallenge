@@ -2,6 +2,7 @@ package br.com.stant.mobile.challenge.presentation.view.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -14,9 +15,12 @@ import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.presentation.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presentation.viewmodel.MoviesViewModel
+import br.com.stant.mobile.challenge.resource.extension.gone
 import br.com.stant.mobile.challenge.resource.utils.Constants
 import br.com.stant.mobile.challenge.resource.extension.hideToolbar
+import br.com.stant.mobile.challenge.resource.extension.visible
 import br.com.stant.mobile.challenge.resource.utils.TypeNav
+import com.facebook.shimmer.ShimmerFrameLayout
 
 class MoviesFragment : Fragment() {
 
@@ -56,6 +60,18 @@ class MoviesFragment : Fragment() {
 
     private fun setupObservers() {
 
+        viewModel.uiState.observe(viewLifecycleOwner) {
+            if (it.isLoading) {
+                binding.loading.startShimmer()
+                binding.rvMovies.gone()
+                binding.loading.visible()
+            } else {
+                binding.loading.stopShimmer()
+                binding.rvMovies.visible()
+                binding.loading.gone()
+            }
+        }
+
         viewModel.moviesList.observe(viewLifecycleOwner) {
             this.setupMoviesRV(it)
             if (isScrollToTheEnd) {
@@ -88,11 +104,13 @@ class MoviesFragment : Fragment() {
                     when (typeNav) {
 
                         TypeNav.MOVIES_DOWNLOADED -> {
-                            menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
+                            menu.icon =
+                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
                         }
 
                         TypeNav.HOME -> {
-                            menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud)
+                            menu.icon =
+                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud)
                         }
                     }
 
