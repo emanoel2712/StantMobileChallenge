@@ -1,7 +1,7 @@
 package br.com.stant.mobile.challenge
 
-import br.com.stant.mobile.challenge.data.api.APIClient
-import br.com.stant.mobile.challenge.data.api.APIResource
+import br.com.stant.mobile.challenge.data.data_source.APIClient
+import br.com.stant.mobile.challenge.data.data_source.APIResource
 import br.com.stant.mobile.challenge.data.repository.MoviesRepository
 import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCase
 import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCaseImpl

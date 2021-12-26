@@ -1,4 +1,4 @@
-package br.com.stant.mobile.challenge.data.api
+package br.com.stant.mobile.challenge.data.data_source
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

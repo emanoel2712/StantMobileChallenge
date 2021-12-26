@@ -2,7 +2,7 @@ package br.com.stant.mobile.challenge.data.repository
 
 import br.com.stant.mobile.challenge.BuildConfig
 import br.com.stant.mobile.challenge.R
-import br.com.stant.mobile.challenge.data.api.APIResource
+import br.com.stant.mobile.challenge.data.data_source.APIResource
 import br.com.stant.mobile.challenge.data.response.ErrorResponse
 import br.com.stant.mobile.challenge.data.response.toMovie
 import br.com.stant.mobile.challenge.domain.model.Movie
