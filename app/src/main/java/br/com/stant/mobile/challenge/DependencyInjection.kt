@@ -9,6 +9,8 @@ import br.com.stant.mobile.challenge.data.repository.MoviesRepository
 import br.com.stant.mobile.challenge.data.repository.MoviesRepositoryImpl
 import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCase
 import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCaseImpl
+import br.com.stant.mobile.challenge.domain.use_case.InsertMoviesUseCase
+import br.com.stant.mobile.challenge.domain.use_case.InsertMoviesUseCaseImpl
 import br.com.stant.mobile.challenge.presentation.viewmodel.MoviesViewModel
 import br.com.stant.mobile.challenge.resource.utils.Constants
 import org.koin.android.ext.koin.androidApplication
@@ -29,7 +31,11 @@ val apiModule = module {
 val databaseModule = module {
 
     single<MoviesDatabase> {
-        Room.databaseBuilder(androidApplication(), MoviesDatabase::class.java, Constants.DATABASE_NAME).build()
+        Room.databaseBuilder(
+            androidApplication(),
+            MoviesDatabase::class.java,
+            Constants.DATABASE_NAME
+        ).build()
     }
 }
 
@@ -55,10 +61,17 @@ val moviesRepositoryModule = module {
 
 // MARK: Use Cases
 
-val moviesUseCaseModule = module {
+val getMoviesUseCaseModule = module {
 
     single<GetMoviesUseCase> {
         GetMoviesUseCaseImpl(get())
+    }
+}
+
+val insertMoviesUseCaseModule = module {
+
+    single<InsertMoviesUseCase> {
+        InsertMoviesUseCaseImpl(get())
     }
 }
 
