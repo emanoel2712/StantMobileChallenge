@@ -45,7 +45,7 @@ val resultDao = module {
 
     single<ResultDao> {
         val database = get<MoviesDatabase>()
-        database.getResultDao()
+        database.resultDao
     }
 }
 
