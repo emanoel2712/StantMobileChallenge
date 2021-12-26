@@ -22,4 +22,4 @@ Algumas tecnologias utilizadas:
 - Coroutines para trabalhar com funções assincronas
 - Glide para carregar imagens através de urls e armazena-las em cache
 - Material Design para conseguir utilizar componentes de UI mais atualizados
-- ShimmerFrameLayout para adicionar um efeito de carregamento, por exemplo, nas listas do app
+- ShimmerFrameLayout para adicionar um efeito de carregamento nas listagens do app
