@@ -53,6 +53,8 @@ class MoviesViewModel(
                     } else {
                         _moviesList.value = response.data?.results ?: emptyList()
                     }
+
+                    insertMovies(response.data?.results ?: emptyList())
                 }
 
                 is Resource.Error -> {
@@ -67,10 +69,7 @@ class MoviesViewModel(
     fun insertMovies(moviesList: List<Result>) {
 
         viewModelScope.launch {
-
-            var result = insertMoviesUseCase(moviesList)
-
-
+            insertMoviesUseCase(moviesList)
         }
     }
 

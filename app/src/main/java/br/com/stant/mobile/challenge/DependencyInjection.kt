@@ -35,7 +35,7 @@ val databaseModule = module {
             androidApplication(),
             MoviesDatabase::class.java,
             Constants.DATABASE_NAME
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 }
 

@@ -79,8 +79,6 @@ class MoviesFragment : Fragment() {
                 this.binding.rvMovies.smoothScrollToPosition(viewModel.lastPosition)
                 isScrollToTheEnd = false
             }
-
-            viewModel.insertMovies(it)
         }
 
         viewModel.moviesFilteredList.observe(viewLifecycleOwner) {
