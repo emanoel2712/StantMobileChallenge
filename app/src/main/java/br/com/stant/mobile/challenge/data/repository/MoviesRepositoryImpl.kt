@@ -4,10 +4,12 @@ import br.com.stant.mobile.challenge.BuildConfig
 import br.com.stant.mobile.challenge.R
 import br.com.stant.mobile.challenge.data.data_source.APIResource
 import br.com.stant.mobile.challenge.data.data_source.dao.ResultDao
-import br.com.stant.mobile.challenge.data.model.Result
+import br.com.stant.mobile.challenge.data.model.ResultDto
+import br.com.stant.mobile.challenge.data.model.toResult
 import br.com.stant.mobile.challenge.data.response.ErrorResponse
 import br.com.stant.mobile.challenge.data.response.toMovie
 import br.com.stant.mobile.challenge.domain.model.Movie
+import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.resource.utils.Resource
 import br.com.stant.mobile.challenge.resource.utils.UIText
 import com.google.gson.Gson
@@ -54,14 +56,27 @@ class MoviesRepositoryImpl(private var apiResource: APIResource, private var res
         }
     }
 
-    override suspend fun insertMovies(movies: List<Result>) {
+    override suspend fun insertMovies(movies: List<ResultDto>) {
 
         return try {
-            var result = resultDao.insertMovies(movies)
-
+            resultDao.insertMovies(movies)
 
         } catch (e: IOException) {
 
+        }
+    }
+
+    override suspend fun getMoviesDB(): List<Result> {
+
+        return try {
+            val result = resultDao.getMovies()
+
+            result.map {
+                it.toResult()
+            }
+
+        } catch (e: IOException) {
+            emptyList()
         }
     }
 }

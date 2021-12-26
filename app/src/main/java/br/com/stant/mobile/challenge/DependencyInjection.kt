@@ -80,7 +80,7 @@ val insertMoviesUseCaseModule = module {
 val moviesViewModelModule = module {
 
     viewModel {
-        MoviesViewModel(get())
+        MoviesViewModel(get(), get())
     }
 }
 
