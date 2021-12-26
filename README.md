@@ -2,6 +2,8 @@
 Stant Company Challenge, using The Movie Database API and more
 Projeto destinado a um teste de uma vaga de desenvolvedor Android. 
 
+(OBS: todas as alterações estão no branch de DEV)
+
 Nesse projeto foi consumido a API do The Movie Database. 
 
 O que foi feito:
