@@ -20,6 +20,6 @@ Algumas tecnologias utilizadas:
 - Injeção de dependência com Koin
 - Retrofit para acessar a API e consumir os serviços
 - Coroutines para trabalhar com funções assincronas
-- Glide para carregar imagens através de urls http e armazena-las em cache
-- Material Design
-- ShimmerFrameLayout 
+- Glide para carregar imagens através de urls e armazena-las em cache
+- Material Design para conseguir utilizar componentes de UI mais atualizados
+- ShimmerFrameLayout para adicionar um efeito de loading no app
