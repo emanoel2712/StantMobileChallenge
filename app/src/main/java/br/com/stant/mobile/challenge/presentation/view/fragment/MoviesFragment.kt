@@ -25,6 +25,7 @@ class MoviesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var isScrollToTheEnd: Boolean = false
+    private var typeNav: Enum<TypeNav>? = null
 
     private val viewModel: MoviesViewModel by viewModel()
 
@@ -83,13 +84,14 @@ class MoviesFragment : Fragment() {
             this.setupMoviesRV(it)
         }
 
-        viewModel.getMovies()
+        if (typeNav != TypeNav.MOVIES_DOWNLOADED) {
+            viewModel.getMovies()
+        }
     }
 
     private fun setupListeners() {
 
         var isClick = false
-        var typeNav: Enum<TypeNav>
 
         binding.topAppBar.setOnMenuItemClickListener { menu ->
 
@@ -100,22 +102,7 @@ class MoviesFragment : Fragment() {
 
                     typeNav = if (isClick) TypeNav.MOVIES_DOWNLOADED else TypeNav.HOME
 
-                    when (typeNav) {
-
-                        TypeNav.MOVIES_DOWNLOADED -> {
-                            menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
-                            viewModel.getMoviesDb()
-                            binding.tvMoviesViewed.visible()
-                        }
-
-                        TypeNav.HOME -> {
-                            menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud)
-                            binding.tvMoviesViewed.gone()
-                            viewModel.getMovies()
-
-                        }
-                    }
-
+                    checkTypeNav(menu, typeNav as TypeNav)
                     true
                 }
 
@@ -147,9 +134,11 @@ class MoviesFragment : Fragment() {
                 val pageIn = viewModel.movie.value?.page
                 viewModel.lastPosition = viewModel.moviesList.value?.size ?: 0
 
-                if (!recyclerView.canScrollVertically(1) && dy != 0) {
-                    isScrollToTheEnd = true
-                    viewModel.getMovies(pageIn?.plus(1), true)
+                if (typeNav != TypeNav.MOVIES_DOWNLOADED) {
+                    if (!recyclerView.canScrollVertically(1) && dy != 0) {
+                        isScrollToTheEnd = true
+                        viewModel.getMovies(pageIn?.plus(1), true)
+                    }
                 }
             }
         })
@@ -187,5 +176,27 @@ class MoviesFragment : Fragment() {
                 return true
             }
         })
+
+        typeNav?.let {
+            checkTypeNav(menu.findItem(R.id.dynamicOp), it)
+        }
+    }
+
+    private fun checkTypeNav(menu: MenuItem, typeNav: Enum<TypeNav>) {
+
+        when (typeNav) {
+
+            TypeNav.MOVIES_DOWNLOADED -> {
+                menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
+                viewModel.getMoviesDb()
+                binding.tvMoviesViewed.visible()
+            }
+
+            TypeNav.HOME -> {
+                menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud)
+                binding.tvMoviesViewed.gone()
+                viewModel.getMovies()
+            }
+        }
     }
 }
