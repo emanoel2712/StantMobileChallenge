@@ -28,8 +28,8 @@ Algumas tecnologias utilizadas e o motivo:
 O APK se encontra em:
 StantMobileChallenge/app/release/
 
-<img src="/screenshots/Screenshot_1640621796.png" width="200" height="400"/>
-<img src="/screenshots/Screenshot_1640623359.png" width="200" height="400"/>
-<img src="/screenshots/Screenshot_1640623363.png" width="200" height="400" />
-<img src="/screenshots/Screenshot_1640623367.png" width="200" height="400" />
-<img src="/screenshots/Screenshot_1640623376.png" width="200" height="400"/>
+<img src="/screenshots/sc1.png" width="200" height="400"/>
+<img src="/screenshots/sc2.png" width="200" height="400"/>
+<img src="/screenshots/sc3.png" width="200" height="400" />
+<img src="/screenshots/sc4.png" width="200" height="400" />
+<img src="/screenshots/sc5.png" width="200" height="400"/>
