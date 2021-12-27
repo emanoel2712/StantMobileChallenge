@@ -2,7 +2,6 @@ package br.com.stant.mobile.challenge.presentation.view.fragment
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -10,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.stant.mobile.challenge.R
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.presentation.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presentation.viewmodel.MoviesViewModel
@@ -19,7 +18,6 @@ import br.com.stant.mobile.challenge.resource.extension.*
 import br.com.stant.mobile.challenge.resource.utils.Constants
 import br.com.stant.mobile.challenge.resource.utils.TypeNav
 import br.com.stant.mobile.challenge.resource.utils.UIState
-import com.facebook.shimmer.ShimmerFrameLayout
 
 class MoviesFragment : Fragment() {
 
@@ -105,13 +103,16 @@ class MoviesFragment : Fragment() {
                     when (typeNav) {
 
                         TypeNav.MOVIES_DOWNLOADED -> {
-                            menu.icon =
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
+                            menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
+                            viewModel.getMoviesDb()
+                            binding.tvMoviesViewed.visible()
                         }
 
                         TypeNav.HOME -> {
-                            menu.icon =
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud)
+                            menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud)
+                            binding.tvMoviesViewed.gone()
+                            viewModel.getMovies()
+
                         }
                     }
 

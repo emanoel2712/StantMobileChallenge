@@ -84,7 +84,7 @@ val getMoviesDbUseCaseModule = module {
 val moviesViewModelModule = module {
 
     viewModel {
-        MoviesViewModel(get(), get())
+        MoviesViewModel(get(), get(), get())
     }
 }
 

@@ -8,4 +8,5 @@
     <string name="search_favorite_movie">Search for your favorite movie</string>
     <string name="oops_something_happened">Oops! some error happened, try again</string>
     <string name="detail_movie">Movie Detail</string>
+    <string name="movies_viewed">Already viewed</string>
 </resources>
