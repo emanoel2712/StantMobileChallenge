@@ -32,6 +32,7 @@ class MoviesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         this.setupObservers()
+        binding.rvMovies.animationPushToUp()
     }
 
     override fun onCreateView(
@@ -190,6 +191,7 @@ class MoviesFragment : Fragment() {
                 menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
                 viewModel.getMoviesDb()
                 binding.tvMoviesViewed.visible()
+                binding.tvMoviesViewed.animationPushRight()
             }
 
             TypeNav.HOME -> {
@@ -198,5 +200,7 @@ class MoviesFragment : Fragment() {
                 viewModel.getMovies()
             }
         }
+
+        binding.rvMovies.animationPushToUp()
     }
 }
