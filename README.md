@@ -18,11 +18,15 @@ Bom, nesse projeto foi utilizado o conceito de clean architeture e também o pad
 
 Algumas tecnologias utilizadas e o motivo:
 
-- Bibliotecas do Android Jetpack (Room, LiveData, ViewModel, Navigation, Databinding)...
+- Bibliotecas do Android Jetpack (Room, LiveData, ViewModel, Navigation, Databinding, Animations)...
 - Injeção de dependência com Koin
 - Retrofit, para acessar a API e consumir os serviços
 - Gson, para converter os JSON's das respostas dos serviços em entidades
 - Coroutines, para trabalhar com funções assincronas
-- Glide, para carregar imagens através de urls http
+- Glide, para carregar imagens através de urls http e também usufruir do armazenamento em cache
 - Material Design, para utilizar componentes de UI mais atualizados
 - ShimmerFrameLayout, para adicionar um efeito de carregamento nas listagens do app
+
+O APK está no seguinte caminho:
+app\release
+
