@@ -7,10 +7,7 @@ import br.com.stant.mobile.challenge.data.data_source.MoviesDatabase
 import br.com.stant.mobile.challenge.data.data_source.dao.ResultDao
 import br.com.stant.mobile.challenge.data.repository.MoviesRepository
 import br.com.stant.mobile.challenge.data.repository.MoviesRepositoryImpl
-import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCase
-import br.com.stant.mobile.challenge.domain.use_case.GetMoviesUseCaseImpl
-import br.com.stant.mobile.challenge.domain.use_case.InsertMoviesUseCase
-import br.com.stant.mobile.challenge.domain.use_case.InsertMoviesUseCaseImpl
+import br.com.stant.mobile.challenge.domain.use_case.*
 import br.com.stant.mobile.challenge.presentation.viewmodel.MoviesViewModel
 import br.com.stant.mobile.challenge.resource.utils.Constants
 import org.koin.android.ext.koin.androidApplication
@@ -72,6 +69,13 @@ val insertMoviesUseCaseModule = module {
 
     single<InsertMoviesUseCase> {
         InsertMoviesUseCaseImpl(get())
+    }
+}
+
+val getMoviesDbUseCaseModule = module {
+
+    single<GetMoviesDbUseCase> {
+        GetMoviesDbUseCaseImpl(get())
     }
 }
 
