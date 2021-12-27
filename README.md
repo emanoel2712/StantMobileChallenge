@@ -24,8 +24,8 @@ Algumas tecnologias utilizadas e o motivo:
 - Material Design, para utilizar componentes de UI mais atualizados
 - ShimmerFrameLayout, para adicionar um efeito de carregamento nas listagens do app 
 
-<img src="/<screenshots/Screenshot_1640623320.png"/>
-<img src="/<screenshots/Screenshot_1640623359.png"/>
-<img src="/<screenshots/Screenshot_1640623363.png"/>
-<img src="/<screenshots/Screenshot_1640623367.png"/>
-<img src="/<screenshots/Screenshot_1640623376.png"/>
+<img src="/<screenshots/Screenshot_1640623320.png" width="200" height="400"/>
+<img src="/<screenshots/Screenshot_1640623359.png" width="200" height="400"/>
+<img src="/<screenshots/Screenshot_1640623363.png" width="200" height="400" />
+<img src="/<screenshots/Screenshot_1640623367.png" width="200" height="400" />
+<img src="/<screenshots/Screenshot_1640623376.png" width="200" height="400"/>
