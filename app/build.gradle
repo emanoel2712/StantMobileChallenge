@@ -18,11 +18,34 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
+    }
+
+    signingConfigs {
+
+        debug {
+            storeFile file('C:\\Users\\kjkjhk\\AndroidStudioProjects\\StantMobileChallenge\\app\\keystore\\stantmobilechallenge.jks')
+            storePassword '123456'
+            keyAlias 'stant'
+            keyPassword '123456'
+        }
+
+        release {
+            storeFile file('C:\\Users\\kjkjhk\\AndroidStudioProjects\\StantMobileChallenge\\app\\keystore\\stantmobilechallenge.jks')
+            storePassword '123456'
+            keyAlias 'stant'
+            keyPassword '123456'
+        }
     }
 
     buildTypes {
+
+        debug {
+            debuggable true
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -36,6 +59,13 @@ android {
 
     buildFeatures {
         viewBinding true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 }
 
