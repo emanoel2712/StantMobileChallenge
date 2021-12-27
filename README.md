@@ -24,6 +24,9 @@ Algumas tecnologias utilizadas e o motivo:
 - Material Design, para utilizar componentes de UI mais atualizados
 - ShimmerFrameLayout, para adicionar um efeito de carregamento nas listagens do app 
 
+O APK se encontra em:
+StantMobileChallenge/app/release/
+
 <img src="/<screenshots/Screenshot_1640623320.png" width="200" height="400"/>
 <img src="/<screenshots/Screenshot_1640623359.png" width="200" height="400"/>
 <img src="/<screenshots/Screenshot_1640623363.png" width="200" height="400" />
