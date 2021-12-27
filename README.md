@@ -23,3 +23,9 @@ Algumas tecnologias utilizadas e o motivo:
 - Glide, para carregar imagens através de urls http
 - Material Design, para utilizar componentes de UI mais atualizados
 - ShimmerFrameLayout, para adicionar um efeito de carregamento nas listagens do app 
+
+<img src="/<screenshots/Screenshot_1640623320.png"/>
+<img src="/<screenshots/Screenshot_1640623359.png"/>
+<img src="/<screenshots/Screenshot_1640623363.png"/>
+<img src="/<screenshots/Screenshot_1640623367.png"/>
+<img src="/<screenshots/Screenshot_1640623376.png"/>
