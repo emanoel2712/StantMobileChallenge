@@ -26,6 +26,7 @@ Algumas tecnologias utilizadas e o motivo:
 - Glide, para carregar imagens através de urls http e também usufruir do armazenamento em cache
 - Material Design, para utilizar componentes de UI mais atualizados
 - ShimmerFrameLayout, para adicionar um efeito de carregamento nas listagens do app
+- Ativado a ofuscação de código e encolher recursos com o Proguard, quando gerado o APK em modo release
 
 O APK se encontra em:
 StantMobileChallenge/app/release/
