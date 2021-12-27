@@ -2,7 +2,6 @@ package br.com.stant.mobile.challenge.presentation.view.fragment
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -10,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.stant.mobile.challenge.R
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.databinding.FragmentMoviesBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import br.com.stant.mobile.challenge.domain.model.Result
 import br.com.stant.mobile.challenge.presentation.view.adapter.MoviesAdapter
 import br.com.stant.mobile.challenge.presentation.viewmodel.MoviesViewModel
@@ -19,7 +18,6 @@ import br.com.stant.mobile.challenge.resource.extension.*
 import br.com.stant.mobile.challenge.resource.utils.Constants
 import br.com.stant.mobile.challenge.resource.utils.TypeNav
 import br.com.stant.mobile.challenge.resource.utils.UIState
-import com.facebook.shimmer.ShimmerFrameLayout
 
 class MoviesFragment : Fragment() {
 
@@ -27,12 +25,14 @@ class MoviesFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var isScrollToTheEnd: Boolean = false
+    private var typeNav: Enum<TypeNav>? = null
 
     private val viewModel: MoviesViewModel by viewModel()
 
     override fun onResume() {
         super.onResume()
         this.setupObservers()
+        binding.rvMovies.animationPushToUp()
     }
 
     override fun onCreateView(
@@ -85,13 +85,14 @@ class MoviesFragment : Fragment() {
             this.setupMoviesRV(it)
         }
 
-        viewModel.getMovies()
+        if (typeNav != TypeNav.MOVIES_DOWNLOADED) {
+            viewModel.getMovies()
+        }
     }
 
     private fun setupListeners() {
 
         var isClick = false
-        var typeNav: Enum<TypeNav>
 
         binding.topAppBar.setOnMenuItemClickListener { menu ->
 
@@ -102,19 +103,7 @@ class MoviesFragment : Fragment() {
 
                     typeNav = if (isClick) TypeNav.MOVIES_DOWNLOADED else TypeNav.HOME
 
-                    when (typeNav) {
-
-                        TypeNav.MOVIES_DOWNLOADED -> {
-                            menu.icon =
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
-                        }
-
-                        TypeNav.HOME -> {
-                            menu.icon =
-                                ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud)
-                        }
-                    }
-
+                    checkTypeNav(menu, typeNav as TypeNav)
                     true
                 }
 
@@ -146,9 +135,11 @@ class MoviesFragment : Fragment() {
                 val pageIn = viewModel.movie.value?.page
                 viewModel.lastPosition = viewModel.moviesList.value?.size ?: 0
 
-                if (!recyclerView.canScrollVertically(1) && dy != 0) {
-                    isScrollToTheEnd = true
-                    viewModel.getMovies(pageIn?.plus(1), true)
+                if (typeNav != TypeNav.MOVIES_DOWNLOADED) {
+                    if (!recyclerView.canScrollVertically(1) && dy != 0) {
+                        isScrollToTheEnd = true
+                        viewModel.getMovies(pageIn?.plus(1), true)
+                    }
                 }
             }
         })
@@ -186,5 +177,30 @@ class MoviesFragment : Fragment() {
                 return true
             }
         })
+
+        typeNav?.let {
+            checkTypeNav(menu.findItem(R.id.dynamicOp), it)
+        }
+    }
+
+    private fun checkTypeNav(menu: MenuItem, typeNav: Enum<TypeNav>) {
+
+        when (typeNav) {
+
+            TypeNav.MOVIES_DOWNLOADED -> {
+                menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_home)
+                viewModel.getMoviesDb()
+                binding.tvMoviesViewed.visible()
+                binding.tvMoviesViewed.animationPushRight()
+            }
+
+            TypeNav.HOME -> {
+                menu.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cloud)
+                binding.tvMoviesViewed.gone()
+                viewModel.getMovies()
+            }
+        }
+
+        binding.rvMovies.animationPushToUp()
     }
 }

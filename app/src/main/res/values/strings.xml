@@ -7,5 +7,6 @@
     <string name="search_favorite_movie">Pesquise o seu filme favorito</string>
     <string name="oops_something_happened">Ooops! Algum erro aconteceu, tente novamente.</string>
     <string name="detail_movie">Detalhes do filme</string>
+    <string name="movies_viewed">Já visualizados</string>
 
 </resources>
