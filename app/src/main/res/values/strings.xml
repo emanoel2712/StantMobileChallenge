@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StantMobileChallenge</string>
+    <string name="app_name">Movies App</string>
 
     <string name="no_internet_connection">Ooops! Verifique sua conexão com a internet.</string>
     <string name="unknow_error">Ooops! Erro desconhecido.</string>
